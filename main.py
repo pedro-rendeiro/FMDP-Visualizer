@@ -34,7 +34,7 @@ class MDPExplore(wx.Frame):
         self.mdp_image = wx.StaticBitmap(self.panel, wx.ID_ANY, wx.Bitmap('./img/mdp.png', wx.BITMAP_TYPE_ANY))
 
         self.sc_time = wx.SpinCtrl(self.panel, value='0')
-        self.sc_time.SetRange(0, 10e4)
+        self.sc_time.SetRange(0, 10000)
 
         controls = [str(x) for x in range(0, number_of_controls())]
         self.cob_control = wx.ComboBox(self.panel, choices=controls, style=wx.CB_READONLY)
@@ -89,9 +89,9 @@ class MDPExplore(wx.Frame):
     def generateMDPGraph(self, u, k, labels):
         """ Construct the (graphviz) graph of the MDP """
         line_width = 5.0
-
+        
         if u > number_of_controls():
-            print "ERROR: %i is not a valid control action!" % u
+            print("ERROR: %i is not a valid control action!" % u)
             u = 0
 
         mdp = gv.Digraph(format='png')
@@ -127,8 +127,8 @@ class MDPExplore(wx.Frame):
                     psum += p
 
             if abs(psum - 1.0) > 1e-6:
-                print "WARNING: The transition matrix has a row (%i) that does not sum to one!" % i
-                print "         It sums to %f." % psum
+                print ("WARNING: The transition matrix has a row (%i) that does not sum to one!" % i)
+                print ("         It sums to %f." % psum)
 
         return mdp
 
