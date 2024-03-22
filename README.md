@@ -38,8 +38,8 @@ Requirements: `graphviz` and `wxPython`.
 
 On Windows, using Conda, one can install with:
 
-``
+```
 conda install graphviz
 conda install python-graphviz
 conda install wxpython
-``
+```
