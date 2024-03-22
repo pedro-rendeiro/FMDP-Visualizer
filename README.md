@@ -36,7 +36,7 @@ The current plot is saved and can be found in the `img/` folder.
 ## Dependencies
 Requirements: `graphviz` and `wxPython`.
 
-On Windows, using Conda, one can install with:
+Using Conda on Windows, one can install these dependencies with:
 
 ```
 conda install graphviz
