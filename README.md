@@ -34,7 +34,7 @@ The current plot is saved and can be found in the `img/` folder.
 ![MDP-Explore Screenshot](https://rmattila.github.io/img/mdp-explore2.png)
 
 ## Dependencies
-Requirements: `graphviz` and `wxPython`.
+Requirements: `graphviz` and `wxPython`. You also need `numpy` and `scipy`.
 
 Using Conda on Windows, one can install these dependencies with:
 
