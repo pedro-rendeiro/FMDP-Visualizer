@@ -42,4 +42,6 @@ Using Conda on Windows, one can install these dependencies with:
 conda install graphviz
 conda install python-graphviz
 conda install wxpython
+conda install numpy
+conda install scipy
 ```
