@@ -37,7 +37,7 @@ class MDPExplore(wx.Frame):
         self.sc_time.SetRange(0, 10000)
 
         controls = [str(x) for x in range(0, number_of_controls())]
-        self.cob_control = wx.ComboBox(self.panel, choices=controls, style=wx.CB_READONLY)
+        self.cob_control = wx.ComboBox(self.panel, value='0', choices=controls, style=wx.CB_READONLY)
 
         self.chb_probs = wx.CheckBox(self.panel, label='Show probabilities')
         self.chb_probs.SetValue(True)
@@ -107,6 +107,10 @@ class MDPExplore(wx.Frame):
                 mdp.node(str(i), 'Node %i' % i)
 
         # Add edges
+        if u == 0:
+            action = 'Do nothing'
+        elif u == 1:
+            action = 'Repair'
         for i in range(0, number_of_states()):
             psum = 0.0
             for j in range(0, number_of_states()):
@@ -114,15 +118,24 @@ class MDPExplore(wx.Frame):
 
                 if TProb(i, j, k, u) > 0:
                     if not self.hasUI:
-                        mdp.edge(str(i), str(j), '%.2f' % p, {'penwidth':str(line_width * p)})
+                        mdp.node(str(i) + str(j), action, shape='box')
+                        mdp.edge(str(i), str(i) + str(j), style='dashed')
+                        mdp.edge(str(i) + str(j), str(j), '%.2f' % p, {'penwidth':str(line_width * p)})
+
                     else:
                         if self.chb_probs.GetValue():
                             if self.chb_use_percentage.GetValue():
-                                mdp.edge(str(i), str(j), '%.1f%%' % (100.0 * p), {'penwidth':str(line_width * p)})
+                                mdp.node(str(i) + str(j), action, shape='box')
+                                mdp.edge(str(i), str(i) + str(j), style='dashed')
+                                mdp.edge(str(i) + str(j), str(j), '%.1f%%' % (100.0 * p), {'penwidth':str(line_width * p)})
                             else:
-                                mdp.edge(str(i), str(j), '%.2f' % p, {'penwidth':str(line_width * p)})
+                                mdp.node(str(i) + str(j), action, shape='box')
+                                mdp.edge(str(i), str(i) + str(j), style='dashed')
+                                mdp.edge(str(i) + str(j), str(j), '%.2f' % p, {'penwidth':str(line_width * p)})
                         else:
-                            mdp.edge(str(i), str(j), None, {'penwidth':str(line_width * p)})
+                            mdp.node(str(i) + str(j), action, shape='box')
+                            mdp.edge(str(i), str(i) + str(j), style='dashed')
+                            mdp.edge(str(i) + str(j), str(j), None, {'penwidth':str(line_width * p)})
 
                     psum += p
 
