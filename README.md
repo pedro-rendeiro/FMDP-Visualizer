@@ -13,6 +13,16 @@ I also created the fork to support Python 3 and above, and provide some installa
 
 Aldebaro. March 2024
 
+## Dependencies
+Requirements: `graphviz` and `wxPython`. You also need `numpy` and `scipy`.
+
+Using Conda on Windows, one can create an environment with these dependencies by running `conda create --name fmdp --file .\environments.txt` on the projects root folder and activate it by running `conda activate fmdp`.
+
+Alternatively, one can also install the require packages in a conda environment using `conda install graphviz python-graphviz wxpython numpy scipy`. I recommend using python 3.7.1.
+
+Pedro, March 2024.
+
+
 ## Usage
 
 First define the transition probabilities of the MDP in `mdp.py` along with the
@@ -32,16 +42,3 @@ The current plot is saved and can be found in the `img/` folder.
 ## Screenshot
 ![MDP-Explore Screenshot](https://rmattila.github.io/img/mdp-explore.png)
 ![MDP-Explore Screenshot](https://rmattila.github.io/img/mdp-explore2.png)
-
-## Dependencies
-Requirements: `graphviz` and `wxPython`. You also need `numpy` and `scipy`.
-
-Using Conda on Windows, one can install these dependencies with:
-
-```
-conda install graphviz
-conda install python-graphviz
-conda install wxpython
-conda install numpy
-conda install scipy
-```
