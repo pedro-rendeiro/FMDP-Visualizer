@@ -107,9 +107,9 @@ class MDPExplore(wx.Frame):
             if i in labels:
                 # Whether or not to show state numbers in state nodes
                 if not self.hasUI or not self.chb_state_numbers.GetValue():
-                    mdp.node(str(i), labels[i])
+                    mdp.node(str(i), labels[i], style='filled', fillcolor='lightblue')
                 else:
-                    mdp.node(str(i), str(i) + ':' + labels[i])
+                    mdp.node(str(i), str(i) + ':' + labels[i], style='filled', fillcolor='lightblue')
             else:
                 mdp.node(str(i), 'Node %i' % i)
             
