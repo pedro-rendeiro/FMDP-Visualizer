@@ -148,11 +148,11 @@ class MDPExplore(wx.Frame):
 
     def plotMDPGraph(self, mdp):
         """ Render graphviz graph of the MDP to file """
-        mdp.render(filename='img/mdp')
+        mdp.render(filename='img/mdp', cleanup=True)
 
         if self.hasUI and self.chb_save_pdf.GetValue():
             mdp.format = 'pdf'
-            mdp.render(filename='img/mdp')
+            mdp.render(filename='img/mdp', cleanup=True)
             mdp.format = 'png'
 
     def updateMDPPlot(self, e):
