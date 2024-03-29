@@ -90,6 +90,8 @@ class MDPExplore(wx.Frame):
         """ Construct the (graphviz) graph of the MDP """
         line_width = 5.0
         mdp = gv.Digraph(format='png')
+        # Set layout engine (see other options in graphviz/docs/layouts)
+        mdp.engine = 'sfdp'
         
         if u > number_of_controls():
             print("ERROR: %i is not a valid control action!" % u)
