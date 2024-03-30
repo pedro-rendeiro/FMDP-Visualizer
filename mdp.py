@@ -10,14 +10,14 @@ from scipy.stats import beta
 
 def number_of_states():
     """ Return the number of states in the MDP """
-    return 4
+    return 2
 
 def number_of_controls():
     """ Return the number of actions in the MDP 
 
     In the example, the two control actions are
-        0 - Do nothing
-        1 - Repair
+        0 - Take a regular shot
+        1 - Take a blind shot
     """
     return 2
 
@@ -25,10 +25,8 @@ def state_labels():
     """ Define the state labels for the states in the MDP """
     labels = {}
 
-    labels[0] = 'New'
-    labels[1] = 'Used'
-    labels[2] = 'Bad'
-    labels[3] = 'Broken'
+    labels[0] = 'Target hit'
+    labels[1] = 'Target missed'
 
     return labels
 
@@ -43,26 +41,17 @@ def TProb(i, j, k, u):
     and it should return a real in [0,1].
     """
     if u == 0:
-        # Control: Do nothing
-        T = [[0.7, 0.2, 0.05, 0.05],
-             [0.0, 0.6, 0.2, 0.2],
-             [0.0, 0.0, 0.5, 0.5],
-             [0.0, 0.0, 0.0, 1.0]]
+        # Control: Take a regular shot
+        T = [[0.7, 0.3],
+             [0.5, 0.5]]
 
         return T[i][j]
 
-    else:
-        # Control: Repair
-        # Probability of successful repair decreases with age
+    elif u == 1:
+        # Control: Take a blind shot
 
-        a = 1.0 + 9.0 * exp(-k / 30.0)
-        b  = 1.0 + 500 * exp(-k / 10.0)
+        T = [[0.3, 0.7],
+             [0, 1]]
 
-        probs = [beta.pdf(((x / 0.95) + 0.25) / 3.0, a, b) for x in range(0, 4)]
-        nprobs = [x/sum(probs) for x in probs]
-
-        if nprobs[j] < 10e-4:
-            return 0.0
-
-        return nprobs[j]
+        return T[i][j]
 

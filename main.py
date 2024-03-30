@@ -98,9 +98,9 @@ class MDPExplore(wx.Frame):
             u = 0
         
         if u == 0:
-            action = 'Do nothing'
+            action = 'Take a regular shot'
         elif u == 1:
-            action = 'Repair'
+            action = 'Take a blind shot'
 
         for i in range(0, number_of_states()):
             # State nodes
